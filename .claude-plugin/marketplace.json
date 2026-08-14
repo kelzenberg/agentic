@@ -1,0 +1,24 @@
+{
+  "name": "agentic-kelzenberg",
+  "owner": {
+    "name": "kelzenberg"
+  },
+  "description": "Personal Claude Code plugin marketplace — plugins and skills authored by @kelzenberg.",
+  "plugins": [
+    {
+      "name": "marketplace-curator",
+      "source": "./claude/plugins/marketplace-curator",
+      "description": "Tools for curating the agentic-kelzenberg Claude Code marketplace — onboarding new plugins or individual skills, scrubbing PII, polishing to repo standard, and updating the manifest."
+    },
+    {
+      "name": "quick-capture",
+      "source": "./claude/plugins/quick-capture",
+      "description": "Quickly capture todos onto a personal task board from any input — URLs, mentions, free text, paper notes — with structured properties and a concise body of deep links. Backend-agnostic by design; ships with a Notion adapter. Stores user-specific board location in a local config file outside this repo."
+    },
+    {
+      "name": "way-of-working",
+      "source": "./claude/plugins/way-of-working",
+      "description": "Capture reusable collaboration patterns from Claude Code sessions and emit them as new skills."
+    }
+  ]
+}

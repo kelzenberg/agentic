@@ -1,0 +1,4 @@
+{
+  "name": "quick-capture",
+  "description": "Quickly capture todos onto a personal task board from any input — URLs, mentions, free text, paper notes — with structured properties and a concise body of deep links. Backend-agnostic by design; ships with a Notion adapter. Stores user-specific board location in a local config file outside this repo."
+}

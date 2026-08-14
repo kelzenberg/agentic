@@ -1,0 +1,7 @@
+{
+  "name": "way-of-working",
+  "description": "Capture reusable collaboration patterns from Claude Code sessions and emit them as new skills.",
+  "author": {
+    "name": "kelzenberg"
+  }
+}

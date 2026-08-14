@@ -1,0 +1,24 @@
+# Runs the repo's canonical PII scanner on every push and pull request.
+# Same script as the local pre-commit hook and the check-pii skill.
+name: pii-scan
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pii-scan:
+    name: pii-scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the full history
+        uses: actions/checkout@v5
+        with:
+          # The git-meta pass reads commit identities across all refs.
+          fetch-depth: 0
+
+      - name: Scanner self-test
+        run: bash claude/plugins/marketplace-curator/scripts/pii-scan.sh --self-test
+
+      - name: Scan the full tree
+        run: bash claude/plugins/marketplace-curator/scripts/pii-scan.sh

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Blocks a commit whose staged files trip the canonical PII scanner.
+# Enable once per clone: git config core.hooksPath .githooks
+# Scanner contract: claude/plugins/marketplace-curator/references/pii-policy.md
+
+set -euo pipefail
+
+root=$(git rev-parse --show-toplevel)
+scanner="$root/claude/plugins/marketplace-curator/scripts/pii-scan.sh"
+
+if [ ! -x "$scanner" ]; then
+  echo "pre-commit: PII scanner missing or not executable: $scanner" >&2
+  echo "pre-commit: commit blocked — restore the scanner or run 'chmod +x' on it." >&2
+  exit 1
+fi
+
+set +e
+output=$("$scanner" --staged)
+rc=$?
+set -e
+
+printf '%s\n' "$output"
+
+case "$rc" in
+  0)
+    exit 0
+    ;;
+  1)
+    echo "pre-commit: HIT records above — commit blocked." >&2
+    echo "pre-commit: scrub them, or mark a documented line with '<!-- pii-ok: reason -->'." >&2
+    echo "pre-commit: an 'unscannable' HIT means nothing was read — binaries need human eyes." >&2
+    exit 1
+    ;;
+  *)
+    echo "pre-commit: scanner failed (exit $rc) — commit blocked." >&2
+    exit "$rc"
+    ;;
+esac

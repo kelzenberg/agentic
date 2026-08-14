@@ -1,0 +1,7 @@
+{
+  "name": "marketplace-curator",
+  "description": "Tools for curating the agentic-kelzenberg Claude Code marketplace — onboarding new plugins or individual skills, scrubbing PII, polishing to repo standard, and updating the manifest.",
+  "author": {
+    "name": "kelzenberg"
+  }
+}
